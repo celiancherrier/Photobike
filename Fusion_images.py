@@ -79,5 +79,5 @@ for k in range (NumberImageToProduce):
         else:
             Frame[:,(i+1)*(FotoWidth-LineToFuse)-LineToFuse:(i+1)*(FotoWidth-LineToFuse),:]=img[:,FotoWidth-LineToFuse:FotoWidth,:]  
     #Save the result    
-    cv2.imwrite(OutputFolder+"/Result4_"+str(NumberFotoPerFrame*k)+".jpg",Frame)
+    cv2.imwrite(OutputFolder+"/Result_"+str(NumberFotoPerFrame*k)+".jpg",Frame)
     print("Image "+str(k+1)+" from "+str(NumberImageToProduce)+" processed.\n")
