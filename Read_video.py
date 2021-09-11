@@ -30,5 +30,5 @@ for videoprise in range(NumberVideosToProcess):
         #increment counter
         i+=1
         #Feedback on Process
-    print('Video'+str(videoprise)+'/'+str(NumberVideosToProcess)+' processed')
+    print('Video'+str(videoprise+1)+'/'+str(NumberVideosToProcess)+' processed')
         
