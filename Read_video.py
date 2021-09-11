@@ -16,7 +16,7 @@ NumberVideosToProcess=26
 for videoprise in range(NumberVideosToProcess):
 
     #Open video
-    cap = cv2.VideoCapture('Video_'+str(videoprise)+'.mp4')
+    cap = cv2.VideoCapture('Videos/Video_'+str(videoprise)+'.mp4')
     if (cap.isOpened()== False):
         print("Error opening video stream or file")
     
