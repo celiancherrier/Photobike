@@ -9,6 +9,7 @@ import picamera
 from time import sleep
 import datetime
 import RPi.GPIO as GPIO
+import os, os.path
 
 #duration of videos, only integer
 VideoDuration=60
@@ -61,7 +62,7 @@ def Interrupt():
     #Calculate new frequency
     Frequency=max(1,min(90,1/TriggerPeriod))
     #Update framerate with framerate_delta (update directly of framerate doesn't work during a video capture)
-    camera.framerate_delta=max(Frequency-60,-59)
+    camera.framerate_delta=max(Frequency-60,-59) 
 
 #Interrput on Reed Sensor trigger
 GPIO.add_event_detect(18, GPIO.RISING, callback = CounterOfTrigger, bouncetime = 50)
@@ -73,7 +74,7 @@ sleep(2)
 camera.framerate=60
 camera.framerate_delta=0
 
-NombreImages=0
+NombreImages=len([name for name in os.listdir('Videos') if os.path.isfile(os.path.join('Videos', name))])
 
 #Loop for recording single Videos
 while True:
@@ -82,3 +83,11 @@ while True:
             camera.wait_recording(VideoDuration)
             camera.stop_recording()
             NombreImages+=1
+            if NombreImages%5==0:
+                camera.close()
+                camera=picamera.PiCamera()
+                camera.resolution=(64,1800)
+                camera.rotation=180
+                sleep(2)
+                camera.framerate=60
+                camera.framerate_delta=0
